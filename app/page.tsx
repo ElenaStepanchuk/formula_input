@@ -7,7 +7,7 @@ const Home = () => {
   return (
     <div>
       <h1>Formula Input App</h1>
-      {/* <FormulaInput /> */}
+      <FormulaInput />
     </div>
   );
 };

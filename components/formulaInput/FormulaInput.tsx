@@ -1,29 +1,29 @@
 'use client';
 
 import React, { useState, ChangeEvent, useEffect } from 'react';
-// import { useQuery } from 'react-query';
+import { useQuery } from 'react-query';
 import useStore from '../../store/store';
-// import FetchSuggestions from '../fetchSuggestions/FetchSuggestions';
-// import { ISuggestion } from '@/types/suggestion';
+import FetchSuggestions from '../fetchSuggestions/FetchSuggestions';
+import { ISuggestion } from '@/types/suggestion';
 
 const FormulaInput: React.FC = () => {
   const { formula, setFormula } = useStore();
   const [inputValue, setInputValue] = useState<string>('');
 
-  //   const {
-  //     data: suggestions,
-  //     isLoading,
-  //     isError,
-  //     refetch,
-  //   } = useQuery<ISuggestion[], Error>(['suggestions', inputValue], () =>
-  //     FetchSuggestions(inputValue),
-  //   );
+  const {
+    data: suggestions,
+    isLoading,
+    isError,
+    refetch,
+  } = useQuery<ISuggestion[], Error>(['suggestions', inputValue], () =>
+    FetchSuggestions(inputValue),
+  );
 
-  //   useEffect(() => {
-  //     if (inputValue) {
-  //       refetch();
-  //     }
-  //   }, [inputValue, refetch]);
+  useEffect(() => {
+    if (inputValue) {
+      refetch();
+    }
+  }, [inputValue, refetch]);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
@@ -37,8 +37,8 @@ const FormulaInput: React.FC = () => {
     setInputValue('');
   };
 
-  //   if (isLoading) return <div>Loading...</div>;
-  //   if (isError) return <div>Error fetching suggestions</div>;
+  if (isLoading) return <div>Loading...</div>;
+  if (isError) return <div>Error fetching suggestions</div>;
 
   return (
     <div>
@@ -48,7 +48,7 @@ const FormulaInput: React.FC = () => {
         onChange={handleChange}
         placeholder="Введите формулу..."
       />
-      {/* {suggestions && (
+      {suggestions && (
         <ul>
           {suggestions.map((suggestion, index) => (
             <li key={index} onClick={() => handleSelectSuggestion(suggestion.text)}>
@@ -56,7 +56,7 @@ const FormulaInput: React.FC = () => {
             </li>
           ))}
         </ul>
-      )} */}
+      )}
       <div>Формула: {formula}</div>
     </div>
   );

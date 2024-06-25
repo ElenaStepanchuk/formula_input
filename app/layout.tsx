@@ -25,7 +25,7 @@ import React from 'react';
 import { AppProps } from 'next/app';
 import { QueryClientProvider } from '@tanstack/react-query';
 import queryClient from '../queryClient';
-// import '../styles/globals.css';
+import '../styles/globals.css';
 
 const RootLayout: React.FC<AppProps> = ({ Component, pageProps }) => {
   return (
